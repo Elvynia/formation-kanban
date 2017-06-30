@@ -1,5 +1,6 @@
 package fr.formation.kanban.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Category {
@@ -10,7 +11,13 @@ public class Category {
 	
 	private Integer order;
 
-	private List<Task> tasks;
+	private transient List<Task> tasks;
+	
+	private Integer idKanban;
+	
+	public Category() {
+		this.tasks = new ArrayList<>();
+	}
 
 	public Integer getId() {
 		return id;
@@ -42,5 +49,13 @@ public class Category {
 
 	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
+	}
+
+	public Integer getIdKanban() {
+		return idKanban;
+	}
+
+	public void setIdKanban(Integer idKanban) {
+		this.idKanban = idKanban;
 	}
 }

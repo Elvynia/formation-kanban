@@ -15,6 +15,8 @@ public class Kanban {
 	private Date closedOn;
 	
 	public Kanban() {
+		this.openedOn = new Date();
+		this.closedOn = new Date();
 		this.categories = new ArrayList<>();
 	}
 

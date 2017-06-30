@@ -16,6 +16,13 @@ public class Task {
 
 	private Date lastModifiedOn;
 
+	private Integer idCategory;
+	
+	public Task() {
+		this.createdOn = new Date();
+		this.lastModifiedOn = new Date();
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -62,6 +69,14 @@ public class Task {
 
 	public void setLastModifiedOn(Date lastModifiedOn) {
 		this.lastModifiedOn = lastModifiedOn;
+	}
+
+	public Integer getIdCategory() {
+		return idCategory;
+	}
+
+	public void setIdCategory(Integer idCategory) {
+		this.idCategory = idCategory;
 	}
 
 }
