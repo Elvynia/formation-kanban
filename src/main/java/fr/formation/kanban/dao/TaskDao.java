@@ -3,6 +3,9 @@ package fr.formation.kanban.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import fr.formation.kanban.factory.QueryBuilder;
 import fr.formation.kanban.model.Task;
@@ -73,6 +76,30 @@ public class TaskDao implements Dao<Task> {
 			return null;
 		}
 		return task;
+	}
+
+	public Collection<Task> findByIdCategory(Integer id) {
+		final List<Task> results = new ArrayList<>();
+		final String query = QueryBuilder.newQuery().select("*")
+				.from("task").where("id_category=" + id).build();
+		try {
+			final Statement stmt = this.getConnection().createStatement();
+			final ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				final Task task = new Task();
+				task.setId(rs.getInt("id"));
+				task.setTitle(rs.getString("title"));
+				task.setDescription(rs.getString("description"));
+				task.setPoints(rs.getInt("points"));
+				task.setCreatedOn(rs.getDate("createdOn"));
+				task.setLastModifiedOn(rs.getDate("lastModifiedOn"));
+				task.setIdCategory(rs.getInt("id_category"));
+				results.add(task);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return results;
 	}
 
 }

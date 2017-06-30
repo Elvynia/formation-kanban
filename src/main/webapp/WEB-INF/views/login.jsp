@@ -6,6 +6,8 @@
 	<form action="${loginUrl}" method="post">
 		<label for="username">Nom d'utilisateur :</label>
 		<input id="username" name="username">
+		<label for="kanbanId">Identifiant du Kanban à visualiser :</label>
+		<input type="number" min="0" id="kanbanId" name="kanbanId">
 		<button>Valider</button>
 	</form>
 </div>
