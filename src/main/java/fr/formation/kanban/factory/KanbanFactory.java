@@ -10,7 +10,7 @@ import fr.formation.kanban.model.Task;
 public class KanbanFactory {
 
 	private static Kanban instance;
-	private static int idCount = 0;
+	private static int idCount = 15;
 
 	public static Kanban getInstance() {
 		if (KanbanFactory.instance == null) {

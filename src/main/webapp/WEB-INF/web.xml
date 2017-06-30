@@ -11,8 +11,18 @@
 		<servlet-class>fr.formation.kanban.web.KanbanServlet</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>DetailsServlet</servlet-name>
+		<servlet-class>fr.formation.kanban.web.DetailsServlet</servlet-class>
+	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>KanbanServlet</servlet-name>
 		<url-pattern>/index.html</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>DetailsServlet</servlet-name>
+		<url-pattern>/task/*</url-pattern>
 	</servlet-mapping>
 </web-app>

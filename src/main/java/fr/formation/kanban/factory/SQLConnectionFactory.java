@@ -11,10 +11,13 @@ public class SQLConnectionFactory {
 	public static Connection getInstance() {
 		if (SQLConnectionFactory.instance == null) {
 			try {
+				Class.forName("com.mysql.jdbc.Driver");
 				SQLConnectionFactory.instance = DriverManager.getConnection(
 						"jdbc:mysql://localhost:3306/kanban?useSSL=false",
 						"root", "root");
 			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
 		}

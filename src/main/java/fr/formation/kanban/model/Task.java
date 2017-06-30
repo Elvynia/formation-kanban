@@ -22,6 +22,11 @@ public class Task {
 		this.createdOn = new Date();
 		this.lastModifiedOn = new Date();
 	}
+	
+	public Task(final Integer id) {
+		this();
+		this.id = id;
+	}
 
 	public Integer getId() {
 		return id;

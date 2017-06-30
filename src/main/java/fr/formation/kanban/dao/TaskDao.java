@@ -39,6 +39,8 @@ public class TaskDao implements Dao<Task> {
 				task.setCreatedOn(rs.getDate("createdOn"));
 				task.setLastModifiedOn(rs.getDate("lastModifiedOn"));
 				task.setIdCategory(rs.getInt("id_category"));
+			} else {
+				return null;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

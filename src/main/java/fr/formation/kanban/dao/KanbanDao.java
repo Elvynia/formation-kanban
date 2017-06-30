@@ -36,6 +36,8 @@ public class KanbanDao implements Dao<Kanban> {
 			if (rs.next()) {
 				kanban.setOpenedOn(rs.getDate("openedOn"));
 				kanban.setClosedOn(rs.getDate("closedOn"));
+			} else {
+				return null;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

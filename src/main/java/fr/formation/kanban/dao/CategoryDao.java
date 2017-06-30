@@ -38,6 +38,8 @@ public class CategoryDao implements Dao<Category> {
 				category.setName(rs.getString("name"));
 				category.setOrder(rs.getInt("zorder"));
 				category.setIdKanban(rs.getInt("id_kanban"));
+			} else {
+				return null;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
