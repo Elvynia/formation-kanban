@@ -7,22 +7,12 @@
 	<display-name>Mon application Kanban</display-name>
 	
 	<servlet>
-		<servlet-name>KanbanServlet</servlet-name>
-		<servlet-class>fr.formation.kanban.web.KanbanServlet</servlet-class>
-	</servlet>
-	
-	<servlet>
-		<servlet-name>DetailsServlet</servlet-name>
-		<servlet-class>fr.formation.kanban.web.DetailsServlet</servlet-class>
+		<servlet-name>kanban-dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>KanbanServlet</servlet-name>
-		<url-pattern>/index.html</url-pattern>
-	</servlet-mapping>
-	
-	<servlet-mapping>
-		<servlet-name>DetailsServlet</servlet-name>
-		<url-pattern>/task/*</url-pattern>
+		<servlet-name>kanban-dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 </web-app>

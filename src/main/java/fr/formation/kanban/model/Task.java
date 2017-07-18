@@ -2,22 +2,36 @@ package fr.formation.kanban.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="task")
 public class Task {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column
 	private String title;
 
+	@Column
 	private String description;
 
+	@Column
 	private Integer points;
 
+	@Column
 	private Date createdOn;
 
+	@Column
 	private Date lastModifiedOn;
 
-	private Integer idCategory;
-	
 	public Task() {
 		this.createdOn = new Date();
 		this.lastModifiedOn = new Date();
@@ -74,14 +88,6 @@ public class Task {
 
 	public void setLastModifiedOn(Date lastModifiedOn) {
 		this.lastModifiedOn = lastModifiedOn;
-	}
-
-	public Integer getIdCategory() {
-		return idCategory;
-	}
-
-	public void setIdCategory(Integer idCategory) {
-		this.idCategory = idCategory;
 	}
 
 }

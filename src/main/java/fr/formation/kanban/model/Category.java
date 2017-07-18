@@ -3,17 +3,32 @@ package fr.formation.kanban.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="category")
 public class Category {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Column
 	private String name;
 	
+	@Column
 	private Integer order;
 
-	private transient List<Task> tasks;
-	
-	private Integer idKanban;
+	@OneToMany
+	@JoinColumn(name="id_category", referencedColumnName="id")
+	private List<Task> tasks;
 	
 	public Category() {
 		this.tasks = new ArrayList<>();
@@ -51,11 +66,4 @@ public class Category {
 		this.tasks = tasks;
 	}
 
-	public Integer getIdKanban() {
-		return idKanban;
-	}
-
-	public void setIdKanban(Integer idKanban) {
-		this.idKanban = idKanban;
-	}
 }
