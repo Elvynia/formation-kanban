@@ -5,13 +5,26 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Application Kanban</title>
+		<script src="<c:url value="/webjars/angular/1.6.5/angular.min.js" />"></script>
+		<script src="<c:url value="/webjars/angular-resource/1.6.5/angular-resource.min.js" />"></script>
+		<script src="<c:url value="/webjars/momentjs/2.18.1/min/moment.min.js" />"></script>
+		<script src="<c:url value="/js/app.js" />"></script>
 	</head>
-	<body>
-		<h1>POC Kanban</h1>
-		<ul>
-			<c:forEach items="${tasks}" var="task">
-				<li><c:out value="${task.title}" />
-			</c:forEach>
-		</ul>
+	<body ng-app="kanban">
+		<h1>Application Kanban</h1>
+		<div ng-controller="MainController as main">
+			<div>
+				<label for="username">Saisir un nom :</label>
+				<input id="username" ng-model="main.username" required>
+			</div>
+			<div>
+				<label for="idKanban">Identifiant du kanban :</label>
+				<input type="number" min="0" ng-model="main.idKanban">
+			</div>
+			<button ng-click="main.showKanban()">Valider</button>
+		</div>
+		<div ng-controller="KanbanController as kanban">
+			<h2>Kanban démarré le {{kanban.openedOn}}</h2>
+		</div>
 	</body>
 </html>
