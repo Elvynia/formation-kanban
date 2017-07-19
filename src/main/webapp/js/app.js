@@ -1,5 +1,8 @@
 var app = angular.module('kanban', ['ngResource']);
 
+app.constant('API_URL', '${api.url}');
+//app.value('API_URL', '${api.url}');
+
 var mainController =  function($rootScope) {
 	this.rootScope = $rootScope;
 	this.username = 'John Smith';
@@ -20,8 +23,8 @@ var kanbanController = function($scope, KanbanFactory) {
 	})
 };
 
-app.factory('KanbanFactory', function($resource) {
-	return $resource('http://localhost:8080/api/kanban');
+app.factory('KanbanFactory', function($resource, API_URL) {
+	return $resource(API_URL + '/kanban');
 });
 
 app.controller('KanbanController', kanbanController);

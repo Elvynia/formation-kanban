@@ -107,6 +107,32 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<webResources>
+						<webResource>
+							<directory>src/main/webapp/js</directory>
+							<filtering>true</filtering>
+							<targetPath>/js</targetPath>
+						</webResource>
+					</webResources>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<api.url>http://localhost:8080/kanban/api</api.url>				
+			</properties>
+		</profile>
+	</profiles>
 </project>
