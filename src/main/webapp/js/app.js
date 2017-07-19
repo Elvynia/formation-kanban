@@ -3,12 +3,12 @@ var app = angular.module('kanban', ['ngResource']);
 app.constant('API_URL', '${api.url}');
 //app.value('API_URL', '${api.url}');
 
-var mainController =  function($rootScope) {
+var mainController =  function($rootScope, DataFactory) {
 	this.rootScope = $rootScope;
 	this.username = 'John Smith';
-	this.idKanban = 1;
+	this.idKanban = null;
+	DataFactory.query((data) =>	this.kanbanList = data);
 };
-
 
 mainController.prototype.showKanban = function() {
 	this.rootScope.$broadcast('showKanban', {
@@ -19,12 +19,22 @@ mainController.prototype.showKanban = function() {
 var kanbanController = function($scope, KanbanFactory) {
 	var vm = this;
 	$scope.$on('showKanban', function(event, data) {
-		vm.openedOn = '2017-01-01';
+		KanbanFactory.get(data, (kanban) => {
+			vm.instance = kanban;
+		});
 	})
 };
 
+app.factory('DataFactory', function($resource, API_URL) {
+	return $resource(API_URL, null, {
+		query: {
+			isArray: false
+		}
+	});
+});
+
 app.factory('KanbanFactory', function($resource, API_URL) {
-	return $resource(API_URL + '/kanban');
+	return $resource(API_URL + '/kanban/:id');
 });
 
 app.controller('KanbanController', kanbanController);

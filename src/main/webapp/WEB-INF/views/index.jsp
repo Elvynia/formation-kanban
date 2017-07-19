@@ -19,12 +19,16 @@
 			</div>
 			<div>
 				<label for="idKanban">Identifiant du kanban :</label>
-				<input type="number" min="0" ng-model="main.idKanban">
+				<select id="idKanban" ng-model="main.idKanban">
+					<option value="" disabled selected hidden>Sélectionner...</option>
+					<option ng-repeat="(id, openedOn) in main.kanbanList"
+						ng-value="id">{{ openedOn | date }}</option>
+				</select>
 			</div>
-			<button ng-click="main.showKanban()">Valider</button>
+			<button ng-click="main.showKanban()" ng-disabled="!main.idKanban">Valider</button>
 		</div>
 		<div ng-controller="KanbanController as kanban">
-			<h2>Kanban démarré le {{kanban.openedOn}}</h2>
+			<h2>Kanban démarré le {{kanban.instance.openedOn | date}}</h2>
 		</div>
 	</body>
 </html>
