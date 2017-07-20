@@ -22,8 +22,8 @@
 	rel="stylesheet">
 </head>
 <body ng-app="kanban">
-	<h1>Application Kanban</h1>
-	<div ng-controller="MainController as main">
+	<div id="login" ng-controller="MainController as main">
+		<h1>Application Kanban</h1>
 		<form ng-submit="main.showKanban()" class="form-inline">
 			<div class="form-group">
 				<label for="username">Saisir un nom :</label> <input id="username"
