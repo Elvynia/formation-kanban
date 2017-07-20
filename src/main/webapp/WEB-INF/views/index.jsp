@@ -8,7 +8,12 @@
 		<script src="<c:url value="/webjars/angular/1.6.5/angular.min.js" />"></script>
 		<script src="<c:url value="/webjars/angular-resource/1.6.5/angular-resource.min.js" />"></script>
 		<script src="<c:url value="/webjars/momentjs/2.18.1/min/moment.min.js" />"></script>
+		<script src="<c:url value="/webjars/jquery/1.11.1/jquery.min.js" />"></script>
+		<script src="<c:url value="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js" />"></script>
 		<script src="<c:url value="/js/app.js" />"></script>
+		
+		<link href="<c:url value="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />"
+			 rel="stylesheet">
 	</head>
 	<body ng-app="kanban">
 		<h1>Application Kanban</h1>
