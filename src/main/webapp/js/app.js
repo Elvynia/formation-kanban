@@ -18,11 +18,15 @@ mainController.prototype.showKanban = function() {
 
 var kanbanController = function($scope, KanbanFactory, CategoryFactory) {
 	var vm = this;
+	vm.ready = false;
 	$scope.$on('showKanban', function(event, data) {
 		KanbanFactory.get(data, (kanban) => {
 			vm.instance = kanban;
 			CategoryFactory.query({ kanbanId: kanban.id },
-					(categories) => vm.categories = categories);
+				(categories) => {
+					vm.categories = categories;
+					vm.ready = true;
+				});
 		});
 	});
 	vm.addCategory = function() {

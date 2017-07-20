@@ -27,16 +27,18 @@
 			</div>
 			<button ng-click="main.showKanban()" ng-disabled="!main.idKanban">Valider</button>
 		</div>
-		<div ng-controller="KanbanController as kanban">
+		<div ng-controller="KanbanController as kanban" ng-show="kanban.ready">
 			<h2>Kanban démarré le {{kanban.instance.openedOn | date}}</h2>
 			<div style="width: 300px; border: 1px solid black; float: left"
 				ng-repeat="category in kanban.categories">
 				<h3>{{category.name}}</h3>
+				
 			</div>
 			<div style="width: 300px; border: 1px solid black; float: left">
 				<input ng-model="kanban.newCategoryName">
   				<input ng-model="kanban.newOrder" type="number">
-  				<button ng-click="kanban.addCategory()" ng-disabled="!kanban.newCategoryName">Ajouter</button>
+  				<button ng-click="kanban.addCategory()"
+  					ng-disabled="!kanban.newCategoryName">Ajouter</button>
 			</div>
 		</div>
 	</body>
