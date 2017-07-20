@@ -40,12 +40,12 @@ public class CategoryController {
 		this.service.delete(id);
 	}
 	
-	@PutMapping(path="/", consumes={"application/json"})
+	@PutMapping(path={"", "/"}, consumes={"application/json"})
 	public Category create(@RequestBody final Category category) {
 		return this.service.create(category);
 	}
 	
-	@PostMapping(path="/", consumes={"application/json"})
+	@PostMapping(path={"", "/"}, consumes={"application/json"})
 	public Category update(@RequestBody final Category category) {
 		return this.service.update(category);
 	}

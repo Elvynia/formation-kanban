@@ -24,7 +24,16 @@ var kanbanController = function($scope, KanbanFactory, CategoryFactory) {
 			CategoryFactory.query({ kanbanId: kanban.id },
 					(categories) => vm.categories = categories);
 		});
-	})
+	});
+	vm.addCategory = function() {
+		CategoryFactory.add({
+			name: vm.newCategoryName,
+			order: vm.newOrder,
+			kanban: {
+				id: vm.instance.id
+			}
+		}, (category) => vm.categories.push(category));
+	};
 };
 
 app.factory('DataFactory', function($resource, API_URL) {
@@ -40,7 +49,14 @@ app.factory('KanbanFactory', function($resource, API_URL) {
 });
 
 app.factory('CategoryFactory', function($resource, API_URL) {
-	return $resource(API_URL + '/kanban/:kanbanId/category/:id');
+	return $resource(API_URL + '/kanban/:kanbanId/category/:id', null, {
+		add: {
+			method: 'PUT',
+			params: {
+				kanbanId: '@kanban.id'
+			}
+		}
+	});
 });
 
 app.controller('KanbanController', kanbanController);
