@@ -1,6 +1,5 @@
 package fr.formation.kanban.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,9 +33,6 @@ public class Kanban {
 	private Date closedOn;
 	
 	public Kanban() {
-		this.openedOn = new Date();
-		this.closedOn = new Date();
-		this.categories = new ArrayList<>();
 	}
 
 	public Integer getId() {

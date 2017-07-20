@@ -16,11 +16,13 @@ mainController.prototype.showKanban = function() {
 	});
 };
 
-var kanbanController = function($scope, KanbanFactory) {
+var kanbanController = function($scope, KanbanFactory, CategoryFactory) {
 	var vm = this;
 	$scope.$on('showKanban', function(event, data) {
 		KanbanFactory.get(data, (kanban) => {
 			vm.instance = kanban;
+			CategoryFactory.query({ kanbanId: kanban.id },
+					(categories) => vm.categories = categories);
 		});
 	})
 };
@@ -35,6 +37,10 @@ app.factory('DataFactory', function($resource, API_URL) {
 
 app.factory('KanbanFactory', function($resource, API_URL) {
 	return $resource(API_URL + '/kanban/:id');
+});
+
+app.factory('CategoryFactory', function($resource, API_URL) {
+	return $resource(API_URL + '/kanban/:kanbanId/category/:id');
 });
 
 app.controller('KanbanController', kanbanController);

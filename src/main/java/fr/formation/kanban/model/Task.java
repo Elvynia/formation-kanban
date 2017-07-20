@@ -33,8 +33,6 @@ public class Task {
 	private Date lastModifiedOn;
 
 	public Task() {
-		this.createdOn = new Date();
-		this.lastModifiedOn = new Date();
 	}
 	
 	public Task(final Integer id) {

@@ -29,6 +29,10 @@
 		</div>
 		<div ng-controller="KanbanController as kanban">
 			<h2>Kanban démarré le {{kanban.instance.openedOn | date}}</h2>
+			<div style="width: 300px; border: 1px solid black; float: left"
+				ng-repeat="category in kanban.categories">
+				<h3>{{category.name}}</h3>
+			</div>
 		</div>
 	</body>
 </html>

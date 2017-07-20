@@ -1,6 +1,5 @@
 package fr.formation.kanban.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table(name="category")
@@ -37,11 +38,10 @@ public class Category {
 	
 	@ManyToOne
 	@JoinColumn(name="id_kanban", referencedColumnName="id")
-	@JsonIgnore
+	@JsonProperty(access=Access.WRITE_ONLY)
 	private Kanban kanban;
 	
 	public Category() {
-		this.tasks = new ArrayList<>();
 	}
 
 	public Integer getId() {
