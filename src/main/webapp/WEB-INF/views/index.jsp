@@ -22,19 +22,22 @@
 <body ng-app="kanban">
 	<h1>Application Kanban</h1>
 	<div ng-controller="MainController as main">
-		<div>
-			<label for="username">Saisir un nom :</label> <input id="username"
-				ng-model="main.username" required>
-		</div>
-		<div>
-			<label for="idKanban">Identifiant du kanban :</label> <select
-				id="idKanban" ng-model="main.idKanban">
-				<option value="" disabled selected hidden>Sélectionner...</option>
-				<option ng-repeat="(id, openedOn) in main.kanbanList" ng-value="id">{{
-					openedOn | date }}</option>
-			</select>
-		</div>
-		<button ng-click="main.showKanban()" ng-disabled="!main.idKanban">Valider</button>
+		<form ng-submit="main.showKanban()" class="form-inline">
+			<div class="form-group">
+				<label for="username">Saisir un nom :</label> <input id="username"
+					ng-model="main.username" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="idKanban">Identifiant du kanban :</label>
+				<select id="idKanban" ng-model="main.idKanban"
+					class="form-control" required>
+					<option value="" disabled selected hidden>Sélectionner...</option>
+					<option ng-repeat="(id, openedOn) in main.kanbanList" ng-value="id">{{
+						openedOn | date }}</option>
+				</select>
+			</div>
+			<button>Valider</button>
+		</form>
 	</div>
 	<div ng-controller="KanbanController as kanban" ng-show="kanban.ready">
 		<h2>Kanban démarré le {{kanban.instance.openedOn | date}}</h2>
@@ -44,10 +47,19 @@
 
 		</div>
 		<div style="width: 300px; border: 1px solid black; float: left">
-			<input ng-model="kanban.newCategoryName"> <input
-				ng-model="kanban.newOrder" type="number">
-			<button ng-click="kanban.addCategory()"
-				ng-disabled="!kanban.newCategoryName">Ajouter</button>
+			<form ng-submit="kanban.addCategory()">
+				<div class="form-group">
+					<label for="category_name">Nom :</label>
+					<input id="category_name" class="form-control"
+						ng-model="kanban.newCategoryName" required>
+				</div>
+				<div class="form-group">
+					<label for="category_order">Valeur d'ordre :</label>
+					<input id="category_order" class="form-control"
+						ng-model="kanban.newOrder" type="number" required>
+				</div>
+			<button>Ajouter</button>
+			</form>
 		</div>
 	</div>
 </body>
