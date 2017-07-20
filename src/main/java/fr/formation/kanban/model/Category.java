@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,13 +27,18 @@ public class Category {
 	@Column
 	private String name;
 	
-	@Column
+	@Column(name="zorder")
 	private Integer order;
 
 	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_category", referencedColumnName="id")
 	@JsonIgnore
 	private List<Task> tasks;
+	
+	@ManyToOne
+	@JoinColumn(name="id_kanban", referencedColumnName="id")
+	@JsonIgnore
+	private Kanban kanban;
 	
 	public Category() {
 		this.tasks = new ArrayList<>();
@@ -68,6 +74,14 @@ public class Category {
 
 	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
+	}
+
+	public Kanban getKanban() {
+		return kanban;
+	}
+
+	public void setKanban(Kanban kanban) {
+		this.kanban = kanban;
 	}
 
 }
