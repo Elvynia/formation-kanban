@@ -18,6 +18,8 @@
 <link
 	href="<c:url value="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />"
 	rel="stylesheet">
+<link href="<c:url value="/css/application.css" />"
+	rel="stylesheet">
 </head>
 <body ng-app="kanban">
 	<h1>Application Kanban</h1>
@@ -39,14 +41,15 @@
 			<button class="btn btn-primary">Valider</button>
 		</form>
 	</div>
-	<div ng-controller="KanbanController as kanban" ng-show="kanban.ready">
+	<div id="kanban" ng-controller="KanbanController as kanban" ng-show="kanban.ready">
 		<h2>Kanban démarré le {{kanban.instance.openedOn | date}}</h2>
-		<div style="width: 300px; border: 1px solid black; float: left"
-			ng-repeat="category in kanban.categories">
-			<h3>{{category.name}}</h3>
-
+		<div class="category" ng-repeat="category in kanban.categories">
+			<h2>{{category.name}}</h2>
+			<div class="task">
+			
+			</div>
 		</div>
-		<div style="width: 300px; border: 1px solid black; float: left">
+		<div class="category">
 			<form ng-submit="kanban.addCategory()">
 				<div class="form-group">
 					<label for="category_name">Nom :</label>
@@ -61,6 +64,7 @@
 			<button class="btn btn-primary">Ajouter</button>
 			</form>
 		</div>
+		<div class="clearfix"></div>
 	</div>
 </body>
 </html>

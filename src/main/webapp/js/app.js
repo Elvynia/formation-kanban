@@ -36,7 +36,11 @@ var kanbanController = function($scope, KanbanFactory, CategoryFactory) {
 			kanban: {
 				id: vm.instance.id
 			}
-		}, (category) => vm.categories.push(category));
+		}, (category) => {
+			vm.categories.push(category);
+			vm.newCategoryName = null;
+			vm.newOrder = null;
+		});
 	};
 };
 
