@@ -36,7 +36,7 @@
 						openedOn | date }}</option>
 				</select>
 			</div>
-			<button>Valider</button>
+			<button class="btn btn-primary">Valider</button>
 		</form>
 	</div>
 	<div ng-controller="KanbanController as kanban" ng-show="kanban.ready">
@@ -58,7 +58,7 @@
 					<input id="category_order" class="form-control"
 						ng-model="kanban.newOrder" type="number" required>
 				</div>
-			<button>Ajouter</button>
+			<button class="btn btn-primary">Ajouter</button>
 			</form>
 		</div>
 	</div>
