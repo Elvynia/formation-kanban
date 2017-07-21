@@ -52,32 +52,34 @@
 	</div>
 	<div id="kanban" ng-controller="KanbanController as kanban" ng-show="kanban.ready">
 		<h2>Kanban démarré le {{kanban.instance.openedOn | date}}</h2>
-		<div class="category" ng-repeat="category in kanban.categories">
-			<div class="edit-icon" ng-controller="EditController as edit">
-				<md-icon md-font-set="material-icons"
-					ng-click="edit.showCategoryEdit()">mode_edit</md-icon>
-			</div>
-			<h2>{{category.name}}</h2>
-			<div class="task" ng-repeat="task in category.tasks">
-				<h3>{{task.title}}</h3>
-			</div>
-		</div>
-		<div class="category">
-			<form ng-submit="kanban.addCategory()">
-				<div class="form-group">
-					<label for="category_name">Nom :</label>
-					<input id="category_name" class="form-control"
-						ng-model="kanban.newCategoryName" required>
+		<div>
+			<div class="category" ng-repeat="category in kanban.categories">
+				<div class="edit-icon" ng-controller="EditController as edit">
+					<md-icon md-font-set="material-icons"
+						ng-click="edit.showCategoryEdit()">mode_edit</md-icon>
 				</div>
-				<div class="form-group">
-					<label for="category_order">Valeur d'ordre :</label>
-					<input id="category_order" class="form-control"
-						ng-model="kanban.newOrder" type="number" required>
+				<h2>{{category.name}}</h2>
+				<div class="task" ng-repeat="task in category.tasks">
+					<h3>{{task.title}}</h3>
 				</div>
-			<button class="btn btn-primary">Ajouter</button>
-			</form>
+			</div>
+			<div class="category">
+				<form ng-submit="kanban.addCategory()">
+					<div class="form-group">
+						<label for="category_name">Nom :</label>
+						<input id="category_name" class="form-control"
+							ng-model="kanban.newCategoryName" required>
+					</div>
+					<div class="form-group">
+						<label for="category_order">Valeur d'ordre :</label>
+						<input id="category_order" class="form-control"
+							ng-model="kanban.newOrder" type="number" required>
+					</div>
+				<button class="btn btn-primary">Ajouter</button>
+				</form>
+			</div>
+			<div class="clearfix"></div>
 		</div>
-		<div class="clearfix"></div>
 	</div>
 </body>
 </html>

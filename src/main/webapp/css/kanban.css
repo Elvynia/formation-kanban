@@ -14,19 +14,34 @@ body {
 	padding: 5px 10px;
 }
 
+#kanban > h2 {
+	width: 100%;
+	text-align: center;
+}
+
+#kanban > div {
+	display: flex;
+	flex-direction: row;
+}
+
 .category {
-	float: left;
 	border: 1px solid #666;
 	border-radius: 10px;
 	margin: 0 5px;
 	background-color: #C9E8E8;
 	padding: 10px;
+	flex: 1;
 }
 
 .category h2 {
 	text-align: center;
 	font-size: 22px;
 	font-variant: small-caps;
+}
+
+.category .edit-icon {
+	float: right;
+    margin-top: 20px;
 }
 
 .task {
