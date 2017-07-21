@@ -42,6 +42,7 @@ var kanbanController = function($scope, KanbanFactory, CategoryFactory, TaskFact
 			}
 		});
 	});
+	$scope.$on('deleteCategory', (event, index) => vm.categories.splice(index, 1));
 	vm.addCategory = function() {
 		CategoryFactory.add({
 			name: vm.newCategoryName,
@@ -85,6 +86,12 @@ var editController = function($scope, $mdDialog, CategoryFactory) {
         		$scope.$emit('updateCategory', category);
         	});
         });
+    };
+    this.categoryDelete = function(event, index) {
+    	CategoryFactory.remove({
+    		kanbanId: vm.kanbanId,
+    		id: vm.category.id
+    	}, () => $scope.$emit('deleteCategory', index));
     };
 };
 

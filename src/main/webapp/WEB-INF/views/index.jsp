@@ -58,6 +58,8 @@
 					ng-init="edit.init(category, kanban.instance.id)">
 					<md-icon md-font-set="material-icons"
 						ng-click="edit.showCategoryEdit($event)">mode_edit</md-icon>
+                    <md-icon md-font-set="material-icons"
+						ng-click="edit.categoryDelete($event, $index)">delete</md-icon>
 				</div>
 				<h2>{{category.name}}</h2>
 				<div class="task" ng-repeat="task in category.tasks">

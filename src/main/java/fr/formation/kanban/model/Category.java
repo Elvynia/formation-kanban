@@ -2,6 +2,7 @@ package fr.formation.kanban.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,7 +32,7 @@ public class Category {
 	@Column(name="zorder")
 	private Integer order;
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="category")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="category",cascade={CascadeType.REMOVE})
 	@JsonIgnore
 	private List<Task> tasks;
 	
