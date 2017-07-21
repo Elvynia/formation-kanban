@@ -45,8 +45,8 @@
 		<h2>Kanban démarré le {{kanban.instance.openedOn | date}}</h2>
 		<div class="category" ng-repeat="category in kanban.categories">
 			<h2>{{category.name}}</h2>
-			<div class="task">
-			
+			<div class="task" ng-repeat="task in category.tasks">
+				<h3>{{task.title}}</h3>
 			</div>
 		</div>
 		<div class="category">

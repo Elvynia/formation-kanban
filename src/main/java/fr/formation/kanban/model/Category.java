@@ -31,8 +31,7 @@ public class Category {
 	@Column(name="zorder")
 	private Integer order;
 
-	@OneToMany(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_category", referencedColumnName="id")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="category")
 	@JsonIgnore
 	private List<Task> tasks;
 	

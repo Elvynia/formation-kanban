@@ -1,7 +1,7 @@
 var app = angular.module('kanban', ['ngResource']);
 
 app.constant('API_URL', '${api.url}');
-//app.value('API_URL', '${api.url}');
+// app.value('API_URL', '${api.url}');
 
 var mainController =  function($rootScope, DataFactory) {
 	this.rootScope = $rootScope;
@@ -16,7 +16,7 @@ mainController.prototype.showKanban = function() {
 	});
 };
 
-var kanbanController = function($scope, KanbanFactory, CategoryFactory) {
+var kanbanController = function($scope, KanbanFactory, CategoryFactory, TaskFactory) {
 	var vm = this;
 	vm.ready = false;
 	$scope.$on('showKanban', function(event, data) {
@@ -25,6 +25,12 @@ var kanbanController = function($scope, KanbanFactory, CategoryFactory) {
 			CategoryFactory.query({ kanbanId: kanban.id },
 				(categories) => {
 					vm.categories = categories;
+					for (let i = 0; i < categories.length; ++i) {
+						TaskFactory.query({
+							kanbanId: vm.instance.id,
+							categoryId: vm.categories[i].id
+						}, (tasks) => vm.categories[i].tasks = tasks);
+					}
 					vm.ready = true;
 				});
 		});
@@ -53,16 +59,30 @@ app.factory('DataFactory', function($resource, API_URL) {
 });
 
 app.factory('KanbanFactory', function($resource, API_URL) {
-	return $resource(API_URL + '/kanban/:id');
+	return $resource(API_URL + '/kanban/:id', null, {
+		add: {
+			method: 'PUT'
+		}
+	});
 });
 
 app.factory('CategoryFactory', function($resource, API_URL) {
-	return $resource(API_URL + '/kanban/:kanbanId/category/:id', null, {
+	return $resource(API_URL + '/kanban/:kanbanId/category/:id', {
+		kanbanId: '@kanban.id'
+	}, {
 		add: {
-			method: 'PUT',
-			params: {
-				kanbanId: '@kanban.id'
-			}
+			method: 'PUT'
+		}
+	});
+});
+
+app.factory('TaskFactory', function($resource, API_URL) {
+	return $resource(API_URL + '/kanban/:kanbanId/category/:categoryId/task/:id', {
+		kanbanId: '@category.kanban.id',
+		categoryId: '@category.id'
+	}, {
+		add: {
+			method: 'PUT'
 		}
 	});
 });

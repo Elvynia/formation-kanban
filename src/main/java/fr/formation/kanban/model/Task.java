@@ -7,7 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table(name="task")
@@ -31,6 +36,11 @@ public class Task {
 
 	@Column
 	private Date lastModifiedOn;
+	
+	@ManyToOne
+	@JoinColumn(name="id_category", referencedColumnName="id")
+	@JsonProperty(access=Access.WRITE_ONLY)
+	private Category category;
 
 	public Task() {
 	}
@@ -86,6 +96,14 @@ public class Task {
 
 	public void setLastModifiedOn(Date lastModifiedOn) {
 		this.lastModifiedOn = lastModifiedOn;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 }
