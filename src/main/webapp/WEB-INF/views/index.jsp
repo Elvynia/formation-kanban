@@ -5,9 +5,14 @@
 <head>
 <meta charset="utf-8">
 <title>Application Kanban</title>
-<script src="<c:url value="/webjars/angular/1.6.5/angular.min.js" />"></script>
+<c:url value="/webjars/angularjs/1.6.4" var="angularUrl" />
+<script src="${angularUrl}/angular.min.js"></script>
+<script src="${angularUrl}/angular-resource.min.js"></script>
+<script src="${angularUrl}/angular-animate.min.js"></script>
+<script src="${angularUrl}/angular-aria.min.js"></script>
+<script src="${angularUrl}/angular-messages.min.js"></script>
 <script
-	src="<c:url value="/webjars/angular-resource/1.6.5/angular-resource.min.js" />"></script>
+	src="<c:url value="/webjars/angular-material/1.1.4/angular-material.min.js" />"></script>
 <script
 	src="<c:url value="/webjars/momentjs/2.18.1/min/moment.min.js" />"></script>
 <script src="<c:url value="/webjars/jquery/1.11.1/jquery.min.js" />"></script>
@@ -20,6 +25,10 @@
 	rel="stylesheet">
 <link href="<c:url value="/css/application.css" />"
 	rel="stylesheet">
+<link href="<c:url value="/webjars/angular-material/1.1.4/angular-material.css" />"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 <body ng-app="kanban">
 	<div id="login" ng-controller="MainController as main">
@@ -44,6 +53,10 @@
 	<div id="kanban" ng-controller="KanbanController as kanban" ng-show="kanban.ready">
 		<h2>Kanban démarré le {{kanban.instance.openedOn | date}}</h2>
 		<div class="category" ng-repeat="category in kanban.categories">
+			<div class="edit-icon" ng-controller="EditController as edit">
+				<md-icon md-font-set="material-icons"
+					ng-click="edit.showCategoryEdit()">mode_edit</md-icon>
+			</div>
 			<h2>{{category.name}}</h2>
 			<div class="task" ng-repeat="task in category.tasks">
 				<h3>{{task.title}}</h3>

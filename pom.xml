@@ -78,20 +78,20 @@
 			<version>2.18.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.webjars.npm</groupId>
-			<artifactId>angular</artifactId>
-			<version>1.6.5</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars.npm</groupId>
-			<artifactId>angular-resource</artifactId>
-			<version>1.6.5</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>angularjs</artifactId>
+			<version>1.6.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
 			<version>3.3.7-1</version>
 		</dependency>
+	        <dependency>
+	            <groupId>org.webjars</groupId>
+	            <artifactId>angular-material</artifactId>
+	            <version>1.1.4</version>
+	        </dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

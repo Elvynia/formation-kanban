@@ -1,4 +1,4 @@
-var app = angular.module('kanban', ['ngResource']);
+var app = angular.module('kanban', ['ngResource', 'ngMaterial']);
 
 app.constant('API_URL', '${api.url}');
 // app.value('API_URL', '${api.url}');
@@ -50,6 +50,16 @@ var kanbanController = function($scope, KanbanFactory, CategoryFactory, TaskFact
 	};
 };
 
+var editController = function($scope, $mdDialog) {
+    this.showCategoryEdit = function() {
+        let dialog = $mdDialog.prompt()
+            .title('Modifier la catégorie')
+            .placeholder('catname')
+            .ariaLabel('Nom');
+        $mdDialog.show(dialog);
+    }
+}
+
 app.factory('DataFactory', function($resource, API_URL) {
 	return $resource(API_URL, null, {
 		query: {
@@ -89,3 +99,4 @@ app.factory('TaskFactory', function($resource, API_URL) {
 
 app.controller('KanbanController', kanbanController);
 app.controller('MainController', mainController);
+app.controller('EditController', editController);
