@@ -54,9 +54,10 @@
 		<h2>Kanban démarré le {{kanban.instance.openedOn | date}}</h2>
 		<div>
 			<div class="category" ng-repeat="category in kanban.categories">
-				<div class="edit-icon" ng-controller="EditController as edit">
+				<div class="edit-icon" ng-controller="EditController as edit"
+					ng-init="edit.init(category, kanban.instance.id)">
 					<md-icon md-font-set="material-icons"
-						ng-click="edit.showCategoryEdit()">mode_edit</md-icon>
+						ng-click="edit.showCategoryEdit($event)">mode_edit</md-icon>
 				</div>
 				<h2>{{category.name}}</h2>
 				<div class="task" ng-repeat="task in category.tasks">

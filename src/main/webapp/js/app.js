@@ -35,6 +35,13 @@ var kanbanController = function($scope, KanbanFactory, CategoryFactory, TaskFact
 				});
 		});
 	});
+	$scope.$on('updateCategory', function(event, category) {
+		vm.categories.forEach((item, index) => {
+			if (item.id === category.id) {
+				vm.categories.splice(index, 1, category);
+			}
+		});
+	});
 	vm.addCategory = function() {
 		CategoryFactory.add({
 			name: vm.newCategoryName,
@@ -50,15 +57,36 @@ var kanbanController = function($scope, KanbanFactory, CategoryFactory, TaskFact
 	};
 };
 
-var editController = function($scope, $mdDialog) {
-    this.showCategoryEdit = function() {
+var editController = function($scope, $mdDialog, CategoryFactory) {
+	var vm = this;
+	this.init = function(category, kanbanId) {
+		vm.category = category;
+		vm.kanbanId = kanbanId;
+	};
+    this.showCategoryEdit = function(event) {
         let dialog = $mdDialog.prompt()
             .title('Modifier la catégorie')
-            .placeholder('catname')
-            .ariaLabel('Nom');
-        $mdDialog.show(dialog);
-    }
-}
+            .placeholder('Nom')
+            .ariaLabel('Nom')
+            .initialValue(vm.category.name)
+            .ok('Valider')
+            .cancel('Annuler')
+            .targetEvent(event);
+        $mdDialog.show(dialog).then((result) => {
+        	let toUpdate = {
+        		id: vm.category.id,
+        		name: result,
+        		order: vm.category.order,
+        		kanban: {
+        			id: vm.kanbanId
+        		}
+        	};
+        	CategoryFactory.save(toUpdate, (category) => {
+        		$scope.$emit('updateCategory', category);
+        	});
+        });
+    };
+};
 
 app.factory('DataFactory', function($resource, API_URL) {
 	return $resource(API_URL, null, {
